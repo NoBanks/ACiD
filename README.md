@@ -93,7 +93,7 @@ ACiD isn't just an L2. It's infrastructure with soul.
 
 **We are not promising:**
 - Revolutionary technology (it's a fork)
-- Token appreciation (there might not be a token)
+- Token price appreciation
 - Being better than Base
 - Changing the world
 
@@ -195,7 +195,7 @@ cat docs/ARCHITECTURE.md
 A: The meme is serious. The tech is serious. The vibes are immaculate.
 
 **Q: Token?**
-A: Maybe never. ETH for gas works fine. We'll see.
+A: $ACiD is the native gas token from day one. Like $OP and $ARB.
 
 **Q: Why should I contribute?**
 A: You shouldn't. Unless you get it. Then you should.

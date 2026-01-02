@@ -58,7 +58,7 @@ The founder isn't the chain. The founder just launched the idea. ACiD is permiss
 
 **We are not promising:**
 - Revolutionary technology (it's a fork)
-- Token price appreciation (there might not even be a token)
+- Token price appreciation
 - Changing the world
 - Being better than Base
 
@@ -98,7 +98,7 @@ The lowercase `i` is intentional:
 > **A**rtificial **C**rypto **i**ntelligence **D**evelopment
 
 **Payment meme potential:**
-If $ACID becomes the native currency, merchants literally ask customers: "Do you take ACID?"
+If $ACiD becomes the native currency, customers literally ask merchants: "Do you take ACID?"
 
 That's not marketing. That's a cultural moment.
 
@@ -332,7 +332,7 @@ Sequencer fees go to the operator (us). On Base this is millions/year.
 | Nobody uses it | Probably. That's fine. |
 | Sequencer costs exceed revenue | Cap TVL, turn it off, or find sponsors |
 | Security issues | It's OP Stack. If it's broken, Base is broken too |
-| Legal issues | No token, no promises, no US entity. Should be fine |
+| Legal issues | No promises, no US entity. Should be fine |
 | Someone forks us | Good. More pH balance |
 
 ---
@@ -410,7 +410,7 @@ A: The native gas token. Like $OP for Optimism, $ARB for Arbitrum. Pay for every
 A: "ACID" isn't trademarked. We're not impersonating anyone. We're a chemistry joke.
 
 **Q: What if it actually takes off?**
-A: Nice problem to have. Scale infra, maybe do a token, definitely stay weird.
+A: Nice problem to have. Scale infra, grow the $ACiD ecosystem, stay weird.
 
 **Q: How do I explain this to people?**
 A: "It's an L2 called ACID because there's one called Base. Yes, like pH. Yes, it works."

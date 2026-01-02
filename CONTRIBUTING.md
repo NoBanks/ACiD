@@ -175,7 +175,7 @@ Contributors will be recognized in:
 
 - The README contributors section
 - Git history (obviously)
-- Future token allocation (if there ever is one — no promises)
+- $ACiD allocation for early contributors (details TBD)
 
 We don't forget the people who showed up early.
 
