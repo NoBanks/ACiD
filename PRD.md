@@ -332,7 +332,7 @@ Sequencer fees go to the operator (us). On Base this is millions/year.
 | Nobody uses it | Probably. That's fine. |
 | Sequencer costs exceed revenue | Cap TVL, turn it off, or find sponsors |
 | Security issues | It's OP Stack. If it's broken, Base is broken too |
-| Legal issues | No promises, no US entity. Should be fine |
+| Legal issues | No promises, transparent founder. Consult lawyers when needed |
 | Someone forks us | Good. More pH balance |
 
 ---
