@@ -89,6 +89,8 @@ Founded by someone with nearly 30 years in art creation, curation, and productio
 
 ACiD isn't just an L2. It's infrastructure with soul.
 
+**Anyone can build on ACiD.**
+
 **We are not promising:**
 - Revolutionary technology (it's a fork)
 - Token appreciation (there might not be a token)

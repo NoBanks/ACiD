@@ -52,6 +52,10 @@ When I first learned to code, it felt cold and sterile. No life. No soul. I had 
 
 ACiD isn't just an L2. It's a statement: **infrastructure can have soul.**
 
+**Anyone can build on ACiD.**
+
+The founder isn't the chain. The founder just launched the idea. ACiD is permissionless — for builders, creators, degens, agents, anyone. No gatekeepers. No permission needed. Just build.
+
 **We are not promising:**
 - Revolutionary technology (it's a fork)
 - Token price appreciation (there might not even be a token)
