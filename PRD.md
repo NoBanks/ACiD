@@ -98,7 +98,7 @@ The lowercase `i` is intentional:
 > **A**rtificial **C**rypto **i**ntelligence **D**evelopment
 
 **Payment meme potential:**
-If $ACiD becomes the native currency, customers literally ask merchants: "Do you take ACID?"
+When merchants accept $ACiD tips, rewards, or payments, customers ask: "Do you take ACID?"
 
 That's not marketing. That's a cultural moment.
 
@@ -317,11 +317,12 @@ Sequencer fees go to the operator (us). On Base this is millions/year.
 - Vitalik tweets the pH joke
 
 **Meme success:**
-- $ACiD becomes a recognized currency
+
+- $ACiD becomes a recognized ecosystem token
 - "ACID vs BASE" becomes a narrative
 - We trend for a day
-- Merchants asking "Do you take ACID?" becomes a thing
-- People paying for stuff in $ACiD IRL
+- Merchants asking "Do you take ACID?" becomes a thing (for tips/rewards)
+- $ACiD staking and governance becomes active
 
 ---
 
@@ -350,17 +351,29 @@ Things we explicitly don't care about:
 
 ---
 
-## Native Token: $ACiD
+## Tokens: ETH + $ACiD
 
-**$ACiD is the native gas token from genesis.** Not a memecoin. Not an afterthought. The actual currency of the chain.
+**Gas Token:** ETH (industry standard)
+**Ecosystem Token:** $ACiD (governance, staking, incentives)
 
-Like $OP for Optimism. Like $ARB for Arbitrum. $ACiD for ACiD.
+Following the model of successful L2s: Optimism uses ETH for gas and $OP for governance. Arbitrum uses ETH for gas and $ARB for governance. ACiD uses ETH for gas and $ACiD for governance.
 
-**Why native token from day one:**
-- "Do you take ACID?" only hits if it's real money
-- Creates actual economy, not just wrapped ETH
-- Aligns incentives from genesis
-- Makes the meme the money
+**Why ETH for gas:**
+
+- Everyone already has ETH (easy onboarding)
+- No exchange rate management headache
+- Follows proven L2 patterns
+- Users don't need to buy a new token just to transact
+
+**$ACiD utility:**
+
+- **Governance** - Vote on protocol upgrades and parameters
+- **Staking** - Secure the network, earn rewards
+- **Ecosystem Incentives** - Builder grants, liquidity mining, contributor rewards
+- **AI Agent Features** - Premium access for autonomous agents (x402 thesis)
+- **Fee Discounts** - Stake $ACiD for reduced sequencer fees
+
+**"Do you take ACID?"** still hits - for tipping, rewards, payments, and ecosystem participation.
 
 **Tokenomics:** TBD (keep it simple when we get there)
 
@@ -404,7 +417,7 @@ Decisions to make later, not now:
 ## FAQ (For the Team)
 
 **Q: What's $ACiD?**
-A: The native gas token. Like $OP for Optimism, $ARB for Arbitrum. Pay for everything in $ACiD. "Do you take ACID?" is literal.
+A: The ecosystem token - governance, staking, incentives. Gas is paid in ETH (same as Optimism/Arbitrum). "Do you take ACID?" works for tips, rewards, and ecosystem participation.
 
 **Q: What if Base's lawyers contact us?**
 A: "ACID" isn't trademarked. We're not impersonating anyone. We're a chemistry joke.

@@ -104,11 +104,19 @@ ACiD isn't just an L2. It's infrastructure with soul.
 
 ---
 
-## Native Token: $ACiD
+## Token: $ACiD
 
-$ACiD is the native gas token from day one. Like $OP for Optimism, $ARB for Arbitrum.
+**Gas:** ETH (same as Base, Optimism, Arbitrum)
+**Native Token:** $ACiD (governance, staking, ecosystem incentives)
 
-Pay gas in $ACiD. Get paid in $ACiD. Ask merchants: "Do you take ACID?"
+Following the industry standard: ETH for gas keeps onboarding simple (everyone already has ETH), while $ACiD serves as the ecosystem token for:
+
+- **Governance** - Vote on protocol decisions
+- **Staking** - Secure the network, earn rewards
+- **Ecosystem Incentives** - Builder grants, liquidity mining
+- **AI Agent Fees** - Premium features for autonomous agents
+
+$OP powers Optimism governance. $ARB powers Arbitrum governance. $ACiD powers ACiD.
 
 ---
 
@@ -118,7 +126,8 @@ Pay gas in $ACiD. Get paid in $ACiD. Ask merchants: "Do you take ACID?"
 |-----------|-------------|
 | Rollup Framework | OP Stack (Bedrock) |
 | Execution | op-geth (EVM compatible) |
-| Native Token | $ACiD |
+| Gas Token | ETH |
+| Ecosystem Token | $ACiD |
 | Sequencer | Single operator initially |
 | Bridge | Standard OP bridge |
 | Explorer | Blockscout |
@@ -195,7 +204,7 @@ cat docs/ARCHITECTURE.md
 A: The meme is serious. The tech is serious. The vibes are immaculate.
 
 **Q: Token?**
-A: $ACiD is the native gas token from day one. Like $OP and $ARB.
+A: ETH for gas (industry standard). $ACiD for governance and ecosystem incentives. Like how $OP and $ARB work.
 
 **Q: Why should I contribute?**
 A: You shouldn't. Unless you get it. Then you should.
