@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bridge | ACiD</title>
+  <meta name="description" content="Bridge assets between Ethereum and ACiD L2">
+  <meta property="og:title" content="ACiD Bridge">
+  <meta property="og:description" content="Bridge assets between Ethereum and ACiD L2">
+  <meta property="og:image" content="assets/ACiD_logo_1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/ACiD_logo_1.png">
+  <link rel="stylesheet" href="bridge.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="home-link">
+      <img src="assets/ACiD_logo_2_4k_Cropped_NoBG.png" alt="ACiD" class="wordmark">
+    </a>
+    <button id="connectWallet" class="wallet-btn">Connect Wallet</button>
+  </header>
+
+  <main>
+    <!-- Animation Container -->
+    <div class="animation-container">
+      <img
+        src="assets/bridge-idle.webp"
+        alt="ACiD"
+        class="bridge-visual"
+        id="bridgeIdle"
+      >
+      <video
+        src="assets/bridge-pending.mp4"
+        class="bridge-visual hidden"
+        id="bridgePending"
+        muted
+        playsinline
+      ></video>
+      <video
+        src="assets/bridge-success.mp4"
+        class="bridge-visual hidden"
+        id="bridgeSuccess"
+        muted
+        playsinline
+      ></video>
+    </div>
+
+    <!-- Quote (shown during pending) -->
+    <p class="quote hidden" id="pendingQuote">Everyone hates waiting, some people like art.</p>
+
+    <!-- Bridge Form -->
+    <div class="bridge-card" id="bridgeForm">
+      <div class="network-row">
+        <div class="network from">
+          <span class="network-label">From</span>
+          <button class="network-select" id="fromNetwork">
+            <span class="network-name">Ethereum</span>
+            <span class="network-badge">L1</span>
+          </button>
+        </div>
+
+        <button class="swap-btn" id="swapNetworks" aria-label="Swap networks">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/>
+          </svg>
+        </button>
+
+        <div class="network to">
+          <span class="network-label">To</span>
+          <button class="network-select acid" id="toNetwork">
+            <span class="network-name">ACiD</span>
+            <span class="network-badge">L2</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="amount-container">
+        <label for="amount" class="amount-label">Amount</label>
+        <div class="amount-input-wrapper">
+          <input
+            type="number"
+            id="amount"
+            placeholder="0.0"
+            step="0.001"
+            min="0"
+          >
+          <div class="token-select">
+            <span class="token-symbol">ETH</span>
+          </div>
+        </div>
+        <div class="balance-row">
+          <span class="balance" id="balance">Balance: --</span>
+          <button class="max-btn" id="maxBtn">MAX</button>
+        </div>
+      </div>
+
+      <button class="bridge-btn" id="bridgeBtn" disabled>
+        <span id="bridgeBtnText">Connect Wallet</span>
+      </button>
+
+      <div class="info-row">
+        <span class="info-label">Estimated time</span>
+        <span class="info-value">~1-3 minutes</span>
+      </div>
+    </div>
+
+    <!-- Status (shown during/after bridge) -->
+    <div class="status-card hidden" id="statusCard">
+      <div class="status-icon" id="statusIcon">
+        <div class="spinner"></div>
+      </div>
+      <p class="status-text" id="statusText">Bridging in progress...</p>
+      <a href="#" class="tx-link hidden" id="txLink" target="_blank">View on Explorer →</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="scale">
+      <span class="acid">ACiD</span>
+      <span class="neutral">1 ◄─── pH ───► 14</span>
+      <span class="base">Base</span>
+    </div>
+  </footer>
+
+  <script src="bridge.js"></script>
+</body>
+</html>
