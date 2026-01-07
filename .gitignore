@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+build/
+dist/
+out/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Environment and secrets
+.env
+.env.*
+*.env
+secrets/
+*.pem
+*.key
+*.enc
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Genesis files (large, regenerate locally)
+# genesis.json
+
+# Private deployment data
+deployment-data/
+*.state.json

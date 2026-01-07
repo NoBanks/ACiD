@@ -1,0 +1,37 @@
+{
+  "chainId": 1714,
+  "chainName": "ACiD Testnet",
+  "l1ChainId": 11155111,
+  "l1ChainName": "Sepolia",
+  "deployedAt": "2026-01-06",
+
+  "l1Contracts": {
+    "OptimismPortalProxy": "0x6f567a4640d5826165f5f962f2af38e0384e6944",
+    "SystemConfigProxy": "0x57326a91c6a14af4bfcf1eee72bb7143a756b14b",
+    "L1StandardBridgeProxy": "0x0695e4b6632844a871a8ffdc693cb3e2b5563743",
+    "L1CrossDomainMessengerProxy": "0xd03af6399bdb060e7689e5e15a6368513d5817f2",
+    "L1ERC721BridgeProxy": "0x346312a1a2aa1922c0595041b4d7dff3547ff781",
+    "OptimismMintableERC20FactoryProxy": "0x7734534786cd54311566de669a1a7e39020e9a0f",
+    "DisputeGameFactoryProxy": "0xc9b61359a4825f73b2729bc95b31dc37b11d7458",
+    "AnchorStateRegistryProxy": "0xc59e2c333d846586cbb4c86dba8f267da2633ea5",
+    "BatchInboxAddress": "0x0056f135b647ee0107935f102ea36da530ed084f",
+    "AddressManager": "0xc402eef0e66b4efd800e414f2b6754f5775b9e88"
+  },
+
+  "superchainContracts": {
+    "SuperchainConfigProxy": "0xc2be75506d5724086deb7245bd260cc9753911be",
+    "ProtocolVersionsProxy": "0x79add5713b383daa0a138d3c4780c7a1804a8090",
+    "OPContractsManager": "0xc69e4c24db479191676611a25d977203c3bdca62"
+  },
+
+  "roles": {
+    "deployer": "0xb03884A8c5bB132379173E459dDBD7cfE3f93eFbd",
+    "l1ProxyAdminOwner": "0x874F4b715E849A0Ae44Ea618494b4E6785c21ec0",
+    "l2ProxyAdminOwner": "0x7792B6Cb5d04Fe2aF4814564bc062Cd68Eba07Ea",
+    "systemConfigOwner": "0x73f3955dF7328Fc8f182dd0d8117E34fD3B72DC6",
+    "challenger": "0x777be39eaFabf7Cb231CA343860405C6b7AA308f",
+    "batcher": "0xBc6964904D146025BDE841B456A5366E242246F8",
+    "proposer": "0x3DfF14508Daf6655926f8AE768aA88CD8D9c33E4",
+    "unsafeBlockSigner": "0xd491A633ad0CA497460CC8564d0f820db3CE9623"
+  }
+}

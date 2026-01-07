@@ -8,6 +8,11 @@
 /_/   \_\____|_|____/
 ```
 
+![Chain ID](https://img.shields.io/badge/Chain_ID-1714-purple)
+![Status](https://img.shields.io/badge/Status-Testnet-yellow)
+![OP Stack](https://img.shields.io/badge/Built_on-OP_Stack-red)
+[![Twitter](https://img.shields.io/twitter/follow/pHbalanceweb3?style=social)](https://twitter.com/pHbalanceweb3)
+
 > **A**rtificial **C**rypto **i**ntelligence **D**evelopment
 
 An Ethereum L2 that exists because Base exists. That's it. That's the pitch.
@@ -190,12 +195,41 @@ cat docs/ARCHITECTURE.md
 
 ---
 
+## Network Details
+
+| Property | Value |
+|----------|-------|
+| **Chain ID** | 1714 |
+| **Block Time** | 2 seconds |
+| **Gas Token** | ETH |
+| **L1 Network** | Sepolia (11155111) |
+| **RPC URL** | `Coming soon (public testnet)` |
+| **Explorer** | `Coming soon (public testnet)` |
+| **Bridge** | `Coming soon` |
+
+### L1 Contract Addresses (Sepolia)
+
+| Contract | Address |
+|----------|---------|
+| OptimismPortal | [`0x6f567a4640d5826165f5f962f2af38e0384e6944`](https://sepolia.etherscan.io/address/0x6f567a4640d5826165f5f962f2af38e0384e6944) |
+| SystemConfig | [`0x57326a91c6a14af4bfcf1eee72bb7143a756b14b`](https://sepolia.etherscan.io/address/0x57326a91c6a14af4bfcf1eee72bb7143a756b14b) |
+| L1StandardBridge | [`0x0695e4b6632844a871a8ffdc693cb3e2b5563743`](https://sepolia.etherscan.io/address/0x0695e4b6632844a871a8ffdc693cb3e2b5563743) |
+| L1CrossDomainMessenger | [`0xd03af6399bdb060e7689e5e15a6368513d5817f2`](https://sepolia.etherscan.io/address/0xd03af6399bdb060e7689e5e15a6368513d5817f2) |
+| DisputeGameFactory | [`0xc9b61359a4825f73b2729bc95b31dc37b11d7458`](https://sepolia.etherscan.io/address/0xc9b61359a4825f73b2729bc95b31dc37b11d7458) |
+
+> Full contract list: [`network-config/addresses.json`](./network-config/addresses.json)
+> Rollup configuration: [`network-config/rollup.json`](./network-config/rollup.json)
+
+---
+
 ## Links
 
 - [PRD](./PRD.md) — Full product doc
 - [Architecture](./docs/ARCHITECTURE.md) — Technical overview
 - [Branding](./docs/BRANDING.md) — ACiD visual identity
 - [Contributing](./CONTRIBUTING.md) — How to help
+- [Security](./SECURITY.md) — Report vulnerabilities
+- [Network Config](./network-config/) — Contract addresses & rollup config
 
 **OP Stack Resources:**
 - [OP Stack Docs](https://docs.optimism.io/stack/getting-started)
