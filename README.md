@@ -157,8 +157,8 @@ We're looking for devs who get it. Not grinders. Not mercenaries. People who see
 
 ```bash
 # Clone and explore
-git clone https://github.com/[your-org]/acid.git
-cd acid
+git clone https://github.com/NoBanks/ACiD.git
+cd ACiD
 
 # Read the docs
 cat PRD.md
@@ -170,17 +170,23 @@ cat docs/ARCHITECTURE.md
 ## Current Status
 
 ```
-[■□□□□□□□□□] 10% — Idea Stage
+[■■■■■■□□□□] 60% — Testnet Stage
 
 ✅ Concept locked
 ✅ Positioning locked
 ✅ Docs written
-⬜ OP Stack forked
-⬜ Local devnet running
-⬜ Testnet deployed
+✅ OP Stack forked
+✅ L1 contracts deployed (Sepolia)
+✅ L2 node operational (op-geth, op-node, op-batcher, op-proposer)
+✅ Local devnet running (2-second blocks)
+✅ Blockscout explorer live (custom branded)
+✅ First bridge transaction (Sepolia → ACiD)
+⬜ Public testnet
 ⬜ Bridge UI shipped
 ⬜ Mainnet
 ```
+
+**Chain ID:** 1714 (pH scale: 1-7-14)
 
 ---
 
