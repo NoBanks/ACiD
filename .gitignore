@@ -1,56 +1,245 @@
-# Dependencies
+# ============================================
+# ACiD L2 Security .gitignore
+# PARANOID MODE - Block everything sensitive
+# ============================================
+
+# ===================
+# PRIVATE KEYS & SECRETS (CRITICAL)
+# ===================
+*.key
+*.pem
+*.p12
+*.pfx
+*.keystore
+*.jks
+**/keystore/
+**/keys/
+privatekey*
+*private*key*
+*.priv
+secret*
+*secret*
+*.secret
+secrets/
+.secrets/
+
+# Encrypted files (still don't commit)
+*.enc
+*.encrypted
+*.gpg
+*.asc
+
+# Mnemonics / Seed phrases
+*mnemonic*
+*seed*phrase*
+*recovery*phrase*
+*wallet*backup*
+
+# JWT / Auth tokens
+*.jwt
+*jwt*secret*
+*auth*token*
+*api*key*
+*apikey*
+
+# ===================
+# ENVIRONMENT FILES (CRITICAL)
+# ===================
+.env
+.env.*
+*.env
+.env.local
+.env.development
+.env.staging
+.env.production
+.envrc
+env/
+envs/
+
+# ===================
+# OP STACK / L2 SPECIFIC
+# ===================
+# Deployment state (contains sensitive deploy info)
+state.json
+*.state.json
+deployment-state/
+deployment-data/
+deploy-config.json
+!deploy-config.example.json
+
+# Genesis with prefunded accounts
+genesis.json
+!genesis.example.json
+
+# Rollup secrets
+rollup-secrets/
+sequencer-key*
+batcher-key*
+proposer-key*
+challenger-key*
+
+# JWT for node auth
+jwt.txt
+jwt-secret*
+engine-jwt*
+
+# Geth data (database, keys)
+geth/
+chaindata/
+keystore/
+nodekey*
+
+# Op-node data
+op-node-data/
+p2p-*key*
+
+# ===================
+# DATABASE & STATE
+# ===================
+*.db
+*.sqlite
+*.sqlite3
+*.leveldb/
+data/
+db/
+
+# ===================
+# CREDENTIALS & CONFIG
+# ===================
+credentials*
+*credentials*
+*.credential
+config.local.*
+config.secret.*
+*password*
+passwd*
+
+# AWS / Cloud
+.aws/
+aws-credentials*
+*.pem
+
+# Infura / Alchemy / RPC providers
+*infura*
+*alchemy*
+*rpc*key*
+*rpc*secret*
+
+# ===================
+# DEPENDENCIES
+# ===================
 node_modules/
 vendor/
+.pnpm-store/
 
-# Build outputs
+# ===================
+# BUILD OUTPUTS
+# ===================
 build/
 dist/
 out/
+artifacts/
+cache/
 *.exe
 *.dll
 *.so
 *.dylib
+*.o
+*.a
 
-# Environment and secrets
-.env
-.env.*
-*.env
-secrets/
-*.pem
-*.key
-*.enc
-
-# IDE
+# ===================
+# IDE & EDITOR
+# ===================
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
+*.sublime-*
+.project
+.settings/
 
-# OS files
+# ===================
+# OS FILES
+# ===================
 .DS_Store
+.DS_Store?
+._*
 Thumbs.db
+ehthumbs.db
 desktop.ini
+$RECYCLE.BIN/
 
-# Logs
+# ===================
+# LOGS & DEBUG
+# ===================
 *.log
 logs/
+*.trace
+debug/
+.debug/
 
-# Docker
+# ===================
+# DOCKER
+# ===================
 docker-compose.override.yml
+docker-compose.local.yml
+.docker/
 
-# Test coverage
+# ===================
+# TEST & COVERAGE
+# ===================
 coverage/
 .nyc_output/
+*.lcov
+.coverage
 
-# Temporary files
+# ===================
+# TEMPORARY
+# ===================
 tmp/
 temp/
 *.tmp
+*.temp
+*.bak
+*.backup
+*.old
 
-# Genesis files (large, regenerate locally)
-# genesis.json
+# ===================
+# FOUNDRY / FORGE
+# ===================
+broadcast/
+cache_forge/
+out/
 
-# Private deployment data
-deployment-data/
-*.state.json
+# ===================
+# HARDHAT
+# ===================
+cache/
+artifacts/
+typechain/
+typechain-types/
+
+# ===================
+# MISC SENSITIVE
+# ===================
+*.pprof
+*.prof
+core
+core.*
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Ansible
+*.retry
+
+# ===================
+# EXPLICITLY ALLOW (override above)
+# ===================
+!.gitkeep
+!*.example
+!*.sample
+!*.template
