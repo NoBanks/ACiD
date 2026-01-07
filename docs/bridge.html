@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACiD Bridge</title>
+  <link rel="icon" href="assets/ACiD_logo_1_4k_Cropped_NoBG.png">
+  <style>
+    :root {
+      --acid: #39FF14;
+      --acid-dim: #39FF1433;
+      --base-blue: #0052FF;
+      --black: #000000;
+      --surface: #000000;
+      --surface-light: #000000;
+      --text: #ffffff;
+      --text-dim: #888888;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      background: var(--black);
+      color: var(--text);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Bridge Card */
+    .bridge-card {
+      background: var(--surface);
+      border: 1px solid var(--acid-dim);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 520px;
+      height: 100%;
+      max-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .bridge-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--surface-light);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bridge-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .info-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid var(--text-dim);
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 14px;
+      font-family: Georgia, serif;
+      font-style: italic;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .info-btn:hover {
+      border-color: var(--acid);
+      color: var(--acid);
+      box-shadow: 0 0 10px var(--acid-dim);
+    }
+
+    /* Info Modal */
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 100;
+      border-radius: 16px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      width: 80%;
+      height: 80%;
+      background: var(--black);
+      border: 1px solid var(--acid-dim);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--text-dim);
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .modal-close:hover {
+      border-color: var(--acid);
+      color: var(--acid);
+    }
+
+    .modal-body {
+      flex: 1;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+
+    .modal-body .qa-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .modal-body h3 {
+      color: var(--acid);
+      font-size: 18px;
+      margin: 0 0 8px 0;
+    }
+
+    .modal-body p {
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .modal-footer {
+      padding-top: 20px;
+      border-top: 1px solid var(--acid-dim);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .modal-footer a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .modal-footer a:hover {
+      color: var(--acid);
+    }
+
+    .footer-eyecon {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-eyecon img {
+      height: 24px;
+      width: auto;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .footer-eyecon:hover img {
+      opacity: 1;
+      filter: drop-shadow(0 0 6px var(--acid));
+    }
+
+    .wallet-btn {
+      background: var(--acid);
+      color: var(--black);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .wallet-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px var(--acid-dim);
+    }
+
+    .wallet-btn.connected {
+      background: var(--surface-light);
+      color: var(--acid);
+      border: 1px solid var(--acid);
+    }
+
+    /* Animation Container */
+    .animation-container {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      min-height: 200px;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .animation-container img,
+    .animation-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Hide browser video controls */
+    video::-webkit-media-controls {
+      display: none !important;
+    }
+    video::-webkit-media-controls-enclosure {
+      display: none !important;
+    }
+
+    .animation-container img {
+      z-index: 1;
+    }
+
+    .animation-container img.hidden {
+      opacity: 0;
+    }
+
+    #pendingVideo {
+      z-index: 2;
+      opacity: 0;
+    }
+
+    #pendingVideo.active {
+      opacity: 1;
+    }
+
+    #successVideo {
+      z-index: 3;
+      opacity: 0;
+    }
+
+    #successVideo.active {
+      opacity: 1;
+    }
+
+    .status-text {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--black);
+      color: var(--acid);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      border: 1px solid var(--acid-dim);
+      z-index: 10;
+    }
+
+    /* Bridge Form */
+    .bridge-form {
+      padding: 20px;
+    }
+
+    .network-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .network-box {
+      background: var(--surface-light);
+      border: 1px solid var(--surface-light);
+      border-radius: 8px;
+      padding: 12px 16px;
+      flex: 1;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .network-box.from {
+      border-color: var(--base-blue);
+    }
+
+    .network-box.to {
+      border-color: var(--acid);
+    }
+
+    .network-label {
+      font-size: 10px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .network-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .network-name.l1 { color: var(--base-blue); }
+    .network-name.l2 { color: var(--acid); }
+
+    .swap-btn {
+      background: var(--surface-light);
+      border: 1px solid var(--text-dim);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 0 12px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.2s;
+    }
+
+    .swap-btn:hover {
+      border-color: var(--acid);
+      color: var(--acid);
+      transform: rotate(180deg);
+    }
+
+    .amount-input-container {
+      background: var(--surface-light);
+      border: 1px solid var(--surface-light);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .amount-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .amount-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .amount-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 24px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .amount-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .max-btn {
+      background: var(--acid-dim);
+      border: none;
+      color: var(--acid);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .max-btn:hover {
+      background: var(--acid);
+      color: var(--black);
+    }
+
+    .token-display {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .bridge-btn {
+      width: 100%;
+      background: var(--acid);
+      color: var(--black);
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .bridge-btn:hover:not(:disabled) {
+      transform: scale(1.01);
+      box-shadow: 0 0 30px var(--acid-dim);
+    }
+
+    .bridge-btn:disabled {
+      background: var(--surface-light);
+      color: var(--text-dim);
+      cursor: not-allowed;
+    }
+
+    .art-phrase {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      z-index: 10;
+      font-size: 13px;
+      color: #ffffff;
+      letter-spacing: 2px;
+    }
+
+    .art-phrase.visible {
+      opacity: 1;
+    }
+
+    /* iPhone 14 Pro Max (430x932) - scaled down card matching viewport aspect ratio */
+    @media (min-width: 400px) and (max-width: 450px) and (min-height: 900px) {
+      .bridge-card {
+        /* 85% of viewport height, width maintains iPhone 14 Pro Max aspect ratio (430:932) */
+        height: 85vh;
+        width: calc(85vh * (430 / 932));
+        max-width: none;
+        max-height: none;
+      }
+
+      .animation-container {
+        min-height: 150px;
+        flex: 1;
+      }
+    }
+
+    /* iPad Pro Portrait (1024x1366) - scaled down card matching viewport aspect ratio */
+    @media (min-width: 1000px) and (max-width: 1100px) and (min-height: 1300px) {
+      .bridge-card {
+        /* 75% of viewport height, width maintains iPad Pro aspect ratio (1024:1366) */
+        height: 75vh;
+        width: calc(75vh * (1024 / 1366));
+        max-width: none;
+        max-height: none;
+      }
+
+      .animation-container {
+        min-height: 200px;
+        flex: 1;
+      }
+    }
+
+    /* Desktop - keep as is */
+    @media (min-width: 1025px) {
+      .bridge-card {
+        max-height: 95vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bridge Card -->
+  <div class="bridge-card">
+    <div class="bridge-header">
+      <div class="header-left">
+        <span class="bridge-title">Bridge</span>
+        <button class="info-btn" onclick="toggleModal()">i</button>
+      </div>
+      <button class="wallet-btn" onclick="toggleWallet()">Connect Wallet</button>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBackdrop(event)">
+      <div class="modal-content">
+        <button class="modal-close" onclick="toggleModal()">×</button>
+        <div class="modal-body">
+          <div class="qa-item">
+            <h3>What is this?</h3>
+            <p>ACiD is an Ethereum L2.<br>Same tech as Base (OP Stack).<br>Chain ID: 1714.</p>
+          </div>
+
+          <div class="qa-item">
+            <h3>Is it safe?</h3>
+            <p>Open source. MIT licensed.<br>Fraud proofs enabled.<br>Same security model as Base and Optimism.</p>
+          </div>
+
+          <div class="qa-item">
+            <h3>Bridging</h3>
+            <p>Deposits are fast.<br>Withdrawals follow standard L2 security.</p>
+          </div>
+
+          <div class="qa-item">
+            <h3>Why "ACiD"?</h3>
+            <p>pH scale: 1-7-14.<br>If there is Base, there must be ACiD.</p>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <a href="https://github.com/pHbalanceweb3/acid" target="_blank">GitHub</a>
+          <a href="https://nobanks.github.io/ACiD/" target="_blank" class="footer-eyecon">
+            <img src="assets/ACiD_logo_1_4k_Cropped.webp" alt="ACiD Home">
+          </a>
+          <a href="https://twitter.com/pHbalanceweb3" target="_blank">Twitter</a>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="animation-container">
+      <img id="idleImg" src="assets/ACiD_logo_1_4k_Cropped.webp" alt="ACiD EYEcon">
+      <video id="pendingVideo" muted playsinline disablepictureinpicture>
+        <source src="assets/bridge-pending.mp4" type="video/mp4">
+      </video>
+      <video id="successVideo" muted playsinline disablepictureinpicture>
+        <source src="assets/bridge-success.mp4" type="video/mp4">
+      </video>
+      <div class="status-text" id="statusText">Ready to bridge</div>
+      <div class="art-phrase" id="artPhrase">待つのは嫌、芸術を楽しめ</div>
+    </div>
+
+    <div class="bridge-form">
+      <div class="network-row">
+        <div class="network-box from">
+          <div class="network-label">From</div>
+          <div class="network-name" id="fromNetwork">Sepolia</div>
+        </div>
+        <button class="swap-btn" onclick="swapNetworks()">⇄</button>
+        <div class="network-box to">
+          <div class="network-label">To</div>
+          <div class="network-name" id="toNetwork">ACiD</div>
+        </div>
+      </div>
+
+      <div class="amount-input-container">
+        <div class="amount-label">
+          <span>Amount</span>
+          <span>Balance: <span id="balance">0.00</span> ETH</span>
+        </div>
+        <div class="amount-row">
+          <input type="number" class="amount-input" id="amountInput" placeholder="0.0" step="0.001">
+          <button class="max-btn" onclick="setMax()">MAX</button>
+          <span class="token-display">ETH</span>
+        </div>
+      </div>
+
+      <button class="bridge-btn" id="bridgeBtn" onclick="initiateBridge()">
+        Enter Amount
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    // Config
+    const LOOP_START = 2.417;
+    const LOOP_END = 4.458;
+
+    // State
+    let currentState = 'idle';
+    let walletConnected = false;
+    let isL1ToL2 = true;
+    let successQueued = false;
+    
+    // Elements
+    const idleImg = document.getElementById('idleImg');
+    const pendingVideo = document.getElementById('pendingVideo');
+    const successVideo = document.getElementById('successVideo');
+    const statusText = document.getElementById('statusText');
+    const bridgeBtn = document.getElementById('bridgeBtn');
+    const amountInput = document.getElementById('amountInput');
+    const balanceEl = document.getElementById('balance');
+    const artPhrase = document.getElementById('artPhrase');
+
+    // Preload success video so it's ready for seamless transition
+    successVideo.load();
+
+    // Pending video loop logic
+    pendingVideo.addEventListener('timeupdate', () => {
+      if (currentState === 'pending' && pendingVideo.currentTime >= LOOP_END) {
+        if (successQueued) {
+          transitionToSuccess();
+        } else {
+          pendingVideo.currentTime = LOOP_START;
+        }
+      }
+    });
+
+    // Success video ended
+    successVideo.addEventListener('ended', () => {
+      setState('idle');
+      statusText.textContent = 'Bridge complete!';
+      setTimeout(() => {
+        statusText.textContent = 'Ready to bridge';
+      }, 2000);
+    });
+
+    function setState(state) {
+      currentState = state;
+            successQueued = false;
+
+      
+      // Handle video/image display
+      idleImg.classList.toggle('hidden', state !== 'idle');
+      pendingVideo.classList.toggle('active', state === 'pending');
+      successVideo.classList.toggle('active', state === 'success');
+
+      if (state === 'idle') {
+        pendingVideo.pause();
+        pendingVideo.currentTime = 0;
+        successVideo.pause();
+        successVideo.currentTime = 0;
+        statusText.textContent = 'Ready to bridge';
+        artPhrase.classList.remove('visible');
+      } else if (state === 'pending') {
+        pendingVideo.currentTime = 0;
+        pendingVideo.play();
+        statusText.textContent = 'Bridging in progress...';
+        artPhrase.classList.add('visible');
+      } else if (state === 'success') {
+        // Direct jump to success (for testing)
+        pendingVideo.pause();
+        successVideo.currentTime = 0;
+        successVideo.play();
+        statusText.textContent = 'Success!';
+        artPhrase.classList.remove('visible');
+      }
+    }
+
+    function transitionToSuccess() {
+      currentState = 'success';
+      
+      // Start success video FIRST, let it begin playing
+      successVideo.currentTime = 0;
+      successVideo.classList.add('active');
+
+      // Play success and THEN hide pending (overlap for seamless transition)
+      const playPromise = successVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // Success video is now playing, safe to hide pending
+          pendingVideo.pause();
+          pendingVideo.classList.remove('active');
+        });
+      } else {
+        pendingVideo.pause();
+        pendingVideo.classList.remove('active');
+      }
+
+      statusText.textContent = 'Bridge successful!';
+      artPhrase.classList.remove('visible');
+    }
+
+    
+    function toggleWallet() {
+      walletConnected = !walletConnected;
+      const btn = document.querySelector('.wallet-btn');
+      if (walletConnected) {
+        btn.textContent = '0xb038...eFbd';
+        btn.classList.add('connected');
+        balanceEl.textContent = '0.42';
+      } else {
+        btn.textContent = 'Connect Wallet';
+        btn.classList.remove('connected');
+        balanceEl.textContent = '0.00';
+      }
+      updateBridgeButton();
+    }
+
+    function swapNetworks() {
+      isL1ToL2 = !isL1ToL2;
+      const fromEl = document.getElementById('fromNetwork');
+      const toEl = document.getElementById('toNetwork');
+      const fromBox = fromEl.closest('.network-box');
+      const toBox = toEl.closest('.network-box');
+
+      if (isL1ToL2) {
+        fromEl.textContent = 'Sepolia';
+        fromEl.className = 'network-name l1';
+        fromBox.style.borderColor = 'var(--base-blue)';
+        toEl.textContent = 'ACiD';
+        toEl.className = 'network-name l2';
+        toBox.style.borderColor = 'var(--acid)';
+      } else {
+        fromEl.textContent = 'ACiD';
+        fromEl.className = 'network-name l2';
+        fromBox.style.borderColor = 'var(--acid)';
+        toEl.textContent = 'Sepolia';
+        toEl.className = 'network-name l1';
+        toBox.style.borderColor = 'var(--base-blue)';
+      }
+    }
+
+    function setMax() {
+      if (walletConnected) {
+        amountInput.value = '0.42';
+        updateBridgeButton();
+      }
+    }
+
+    function updateBridgeButton() {
+      const amount = parseFloat(amountInput.value) || 0;
+
+      if (!walletConnected) {
+        bridgeBtn.textContent = 'Connect Wallet';
+        bridgeBtn.disabled = false;
+      } else if (amount <= 0) {
+        bridgeBtn.textContent = 'Enter Amount';
+        bridgeBtn.disabled = true;
+      } else if (amount > 0.42) {
+        bridgeBtn.textContent = 'Insufficient Balance';
+        bridgeBtn.disabled = true;
+      } else {
+        bridgeBtn.textContent = `Bridge ${amount} ETH`;
+        bridgeBtn.disabled = false;
+      }
+    }
+
+    function initiateBridge() {
+      if (!walletConnected) {
+        toggleWallet();
+        return;
+      }
+
+      const amount = parseFloat(amountInput.value) || 0;
+      if (amount <= 0 || amount > 0.42) return;
+
+      // Start pending state
+      setState('pending');
+
+      // Simulate bridge completion after 8 seconds (enough for a few loops)
+      setTimeout(() => {
+        successQueued = true;
+        statusText.textContent = 'Finalizing...';
+      }, 8000);
+    }
+
+    // Input listener
+    amountInput.addEventListener('input', updateBridgeButton);
+
+    // Initialize
+    updateBridgeButton();
+
+    // Modal functions
+    const modalOverlay = document.getElementById('modalOverlay');
+
+    function toggleModal() {
+      modalOverlay.classList.toggle('active');
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target === modalOverlay) {
+        toggleModal();
+      }
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        toggleModal();
+      }
+    });
+  </script>
+</body>
+</html>
