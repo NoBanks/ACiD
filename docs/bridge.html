@@ -406,10 +406,12 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      overflow: hidden;
     }
 
     .amount-input {
       flex: 1;
+      min-width: 0;
       background: transparent;
       border: none;
       color: var(--text);
@@ -423,6 +425,7 @@
     }
 
     .max-btn {
+      flex-shrink: 0;
       background: var(--acid-dim);
       border: none;
       color: var(--acid);
@@ -441,6 +444,7 @@
     }
 
     .token-display {
+      flex-shrink: 0;
       color: var(--text);
       font-weight: 600;
     }
