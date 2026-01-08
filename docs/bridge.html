@@ -489,6 +489,51 @@
       opacity: 1;
     }
 
+    /* General mobile - all phones */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .bridge-card {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: none;
+        min-height: 100vh;
+        min-height: calc(100vh - 20px);
+        border-radius: 12px;
+      }
+
+      .bridge-header {
+        padding: 16px;
+      }
+
+      .bridge-form {
+        padding: 16px;
+      }
+
+      .amount-row {
+        gap: 8px;
+      }
+
+      .max-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      .network-box {
+        padding: 10px 12px;
+      }
+
+      .swap-btn {
+        width: 36px;
+        height: 36px;
+        margin: 0 8px;
+        font-size: 16px;
+      }
+    }
+
     /* iPhone 14 Pro Max (430x932) - scaled down card matching viewport aspect ratio */
     @media (min-width: 400px) and (max-width: 450px) and (min-height: 900px) {
       .bridge-card {
