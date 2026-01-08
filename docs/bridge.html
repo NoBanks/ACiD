@@ -283,6 +283,8 @@
 
     .animation-container img {
       z-index: 1;
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
 
     .animation-container img.hidden {
@@ -292,6 +294,7 @@
     #pendingVideo {
       z-index: 2;
       opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     #pendingVideo.active {
@@ -301,6 +304,7 @@
     #successVideo {
       z-index: 3;
       opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
     #successVideo.active {
