@@ -164,9 +164,9 @@ We appreciate everything Base has built. Coinbase brought millions into crypto. 
 **For ACiD holders:** We root for Base. When they win, the ecosystem wins. When they ship, we celebrate. No tribalism. Just equilibrium.
 
 ```
-pH 1  ←───────── 7 ─────────→  pH 14
-ACiD            neutral           Base
-     ←── both needed for balance ──→
+pH 1 ←───────── 7 ─────────→ pH 14
+ACiD neutral Base
+ ←── both needed for balance ──→
 ```
 
 **The ask:** Don't pick sides. Pick balance. The healthiest systems have both acids and bases working together.
@@ -183,7 +183,7 @@ This isn't competition. It's coexistence. It's chemistry. It's how nature works.
 Week 1-2: Fork OP Stack, get local devnet running
 Week 3-4: Deploy testnet on Sepolia
 Week 5-6: Basic bridge UI, block explorer
-Week 7:   Launch tweet
+Week 7: Launch tweet
 ```
 
 ### What We Don't Do

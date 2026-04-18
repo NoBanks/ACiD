@@ -1,11 +1,11 @@
 # ACiD
 
 ```
-    _    ____ _ ____
-   / \  / ___(_)  _ \
-  / _ \| |   | | | | |
+ _ ____ _ ____
+ / \ / ___(_) _ \
+ / _ \| | | | | | |
  / ___ \ |___| | |_| |
-/_/   \_\____|_|____/
+/_/ \_\____|_|____/
 ```
 
 ![Chain ID](https://img.shields.io/badge/Chain_ID-1714-purple)
@@ -43,9 +43,9 @@ We're not here to compete. We're here to coexist.
 If you're pro-Base, you should be pro-ACiD. Not competition — chemistry.
 
 ```
-pH 1  ←───────── 7 ─────────→  pH 14
-ACiD            neutral           Base
-     ←── both needed for balance ──→
+pH 1 ←───────── 7 ─────────→ pH 14
+ACiD neutral Base
+ ←── both needed for balance ──→
 ```
 
 We appreciate everything Base and Coinbase have built. We're not here to tear down. We're here to complete the equation. A world with only Base is pH 14 — that's not balanced, that's caustic.
@@ -261,5 +261,5 @@ MIT — Same as OP Stack. Fork it, extend it, make it yours.
 ---
 
 <p align="center">
-  <i>Don't trip, we have no roadmap.</i>
+ <i>Don't trip, we have no roadmap.</i>
 </p>

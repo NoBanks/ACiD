@@ -40,9 +40,19 @@ body {
   }
 }
 
-.logo img {
+.logo img,
+.logo video {
   width: 180px;
   height: auto;
+  display: block;
+  background: var(--black);
+  mix-blend-mode: screen;
+  animation: eyecon-fade-in 0.8s ease-out both;
+}
+
+@keyframes eyecon-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 main {
@@ -138,7 +148,8 @@ footer {
     padding: 3rem 2rem;
   }
 
-  .logo img {
+  .logo img,
+  .logo video {
     width: 280px;
   }
 
@@ -191,7 +202,8 @@ footer {
     gap: 1.75rem;
   }
 
-  .logo img {
+  .logo img,
+  .logo video {
     width: 120px;
   }
 

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACiD — Founder's Story</title>
+  <meta name="description" content="How a creative producer and AI built an Ethereum L2 from scratch. Infrastructure with soul.">
+  <meta property="og:title" content="ACiD — Founder's Story">
+  <meta property="og:description" content="Infrastructure with soul. The origin of ACiD.">
+  <meta property="og:image" content="assets/ACiD_logo_1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon-eyecon.png">
+  <style>
+    :root {
+      --acid: #39FF14;
+      --acid-dim: #39FF1433;
+      --acid-glow: #39FF1466;
+      --base-blue: #0052FF;
+      --bg: #000000;
+      --bg-lift: #000000;
+      --text: #ffffff;
+      --text-dim: #ffffff;
+      --rule: #1a1a1a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { background: var(--bg); }
+
+    body {
+      font-family: 'SF Mono', 'Fira Code', ui-monospace, Menlo, monospace;
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding: 60px 24px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .backlink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      margin-bottom: 48px;
+      transition: color 0.2s ease;
+    }
+
+    .backlink:hover { color: var(--acid); }
+
+    .eyecon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .eyecon img {
+      width: 72px;
+      height: auto;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 14px var(--acid-dim));
+    }
+
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+      font-size: clamp(32px, 5vw, 44px);
+      text-align: center;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    h1 em {
+      color: var(--acid);
+      font-style: italic;
+    }
+
+    .dek {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 56px;
+    }
+
+    h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--acid);
+      margin: 48px 0 16px;
+      letter-spacing: 0.3px;
+    }
+
+    p {
+      font-size: 15px;
+      margin-bottom: 18px;
+      color: var(--text);
+    }
+
+    p.quiet { color: var(--text-dim); }
+
+    p strong {
+      color: var(--acid);
+      font-weight: 600;
+    }
+
+    .pull {
+      border-left: 2px solid var(--acid);
+      padding: 4px 0 4px 20px;
+      margin: 28px 0;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .cast {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 24px 0 32px;
+    }
+
+    @media (min-width: 640px) {
+      .cast { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .role {
+      background: var(--bg-lift);
+      border: 1px solid var(--acid-dim);
+      border-radius: 10px;
+      padding: 18px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .role:hover {
+      border-color: var(--acid);
+      box-shadow: 0 0 18px var(--acid-glow);
+    }
+
+    .role .who {
+      color: var(--acid);
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .role .what {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .role .what + p {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    .rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 56px 0;
+    }
+
+    .coda {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-top: 40px;
+    }
+
+    .coda .ph {
+      display: inline-block;
+      color: var(--acid);
+      padding: 2px 10px;
+      border: 1px solid var(--acid-dim);
+      border-radius: 4px;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .links a:hover {
+      color: var(--acid);
+      border-bottom-color: var(--acid-dim);
+    }
+
+    ::selection {
+      background: var(--acid);
+      color: var(--bg);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="backlink" href="index.html">← ACiD</a>
+
+    <div class="eyecon">
+      <img src="assets/ACiD_logo_1_4k_Cropped_NoBG.png" alt="ACiD">
+    </div>
+
+    <h1>Infrastructure <em>with soul.</em></h1>
+    <p class="dek">Founder's Story</p>
+
+    <h2>A producer walks into a terminal.</h2>
+
+    <p>ACiD was started by <strong>NoBanks</strong> — a creative producer with almost thirty years behind a camera, a microphone, and a canvas. Full-production cinematography. Songwriting, arrangement, mixing, mastering. Visual art. The kind of career where taste is the product.</p>
+
+    <p>Coding came last. And at first, it was unbearable.</p>
+
+    <p class="quiet">Monospace on a grey screen. Linters yelling. Stack traces that felt designed to make you feel stupid. The tools that engineers accepted as normal felt, to a producer, like a studio with the lights off and the monitors unplugged.</p>
+
+    <div class="pull">"Code is just 1s and 0s without visual soul."</div>
+
+    <p>So he customized the environment until it felt like a studio. Acid green on black. Seeing-eye motifs. A workspace that invited creativity instead of punishing it. Building got fun. Then building got serious. Then building got this.</p>
+
+    <hr class="rule">
+
+    <h2>The collaboration.</h2>
+
+    <p>ACiD is not a solo project, and it is not a team of engineers. It is a producer and two AIs in a disciplined working relationship.</p>
+
+    <div class="cast">
+      <div class="role">
+        <div class="who">NoBanks</div>
+        <div class="what">Leader · Creative producer</div>
+        <p>Vision, taste, strategy, final call. Does not write the code.</p>
+      </div>
+      <div class="role">
+        <div class="who">Claude</div>
+        <div class="what">Software engineer</div>
+        <p>Writes the code, runs the infra, fixes the bugs. $200/month. Serious relationship.</p>
+      </div>
+      <div class="role">
+        <div class="who">NoClaw</div>
+        <div class="what">Digital twin · Agent</div>
+        <p>NoBanks's AI son. Months of tuning. Runs on local MLX models on the Mac in the corner.</p>
+      </div>
+    </div>
+
+    <p>The chain runs on an Apple silicon mini in a home studio. Not a cloud instance. Not a datacenter. A Mac with models loaded into RAM, a queue proxy keeping them from fighting, and a producer who knows what he wants the thing to feel like.</p>
+
+    <p class="quiet">This is on purpose. The whole bet is that web3 is starved of visual inspiration, and the people who know how to build inspiration are not the people writing the Solidity. ACiD is what happens when those two skill sets finally get in the same room — even if one of them is a language model.</p>
+
+    <hr class="rule">
+
+    <h2>The chain.</h2>
+
+    <p>Technically, ACiD is an Ethereum Layer 2 forked from the OP Stack — the same foundation that powers Base. Optimistic rollup. Fraud proofs. EVM-compatible. MIT-licensed. Chain ID <strong>1714</strong>, because the pH scale runs 1 → 7 → 14 and we like our numbers to mean something.</p>
+
+    <p>Philosophically, ACiD is the counterweight. If there is Base, there must be ACiD. Not an attack on Base — a balancing. An ecosystem with only institutional rails tips over. An ecosystem with only counterculture rails never gets on-ramps. Web3 needs pH balance.</p>
+
+    <div class="pull">"We root for Base. We just think the scale needs the other end, too."</div>
+
+    <hr class="rule">
+
+    <h2>What this actually means.</h2>
+
+    <p>Every visual decision on ACiD is intentional. The lowercase <em>i</em> is a seeing eye and a droplet. The acid green is not a tech company green, it is an acid green. The bridge animation takes its time because waiting is not un-fun when the art is good.</p>
+
+    <p>Every technical decision on ACiD is also intentional. Models run locally. Prompts are capped. The stream stays live nine days at a stretch. The Mac does not crash, because a crash is not just a restart — it's a producer losing a studio day.</p>
+
+    <p>The thesis is simple: if builders are visually inspired, they build happier. Happier builders ship better products. Better products are better for everyone. Soul is not decoration. Soul is a competitive moat.</p>
+
+    <hr class="rule">
+
+    <h2>No roadmap. Occasional delivery.</h2>
+
+    <p>There is no whitepaper promising a decentralized future by Q3. There is a bridge that works, a chain that boots, a producer with taste, and two AIs taking notes. What ships, ships. What doesn't ship, was probably a bad idea.</p>
+
+    <p>This is the part the institutions can't copy.</p>
+
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="bridge.html">Bridge</a>
+      <a href="PH_BALANCE_WHITEPAPER.md">Whitepaper</a>
+      <a href="https://github.com/NoBanks/ACiD" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/pHbalanceweb3" target="_blank" rel="noopener">Twitter</a>
+    </div>
+
+    <p class="coda">
+      Don't trip, we have no roadmap.<br>
+      <span class="ph">pH 1 · ACiD · Chain ID 1714</span>
+    </p>
+  </div>
+  <script src="sovereign-radio.js" data-accent="#39FF14" data-position="top-right"></script>
+</body>
+</html>
