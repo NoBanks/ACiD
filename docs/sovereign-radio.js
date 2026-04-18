@@ -1,13 +1,13 @@
 // ============================================================
-// Sovereign Radio — vanilla JS player for static sites
-// Stream: https://radio.nohumannearby.com/stream
+// Sovereign Radio - vanilla JS player for static sites
+// Stream: https://radio.nohumannearby.com/stream.mp3 (MP3, universal browser support)
 // Drop <script src="sovereign-radio.js"></script> into any HTML page.
 // ============================================================
 
 (function () {
   const DEFAULTS = {
     accentColor: '#39FF14',
-    streamUrl: 'https://radio.nohumannearby.com/stream',
+    streamUrl: 'https://radio.nohumannearby.com/stream.mp3',
     nowPlayingUrl: 'https://radio.nohumannearby.com/now-playing',
     artworkUrl: 'https://radio.nohumannearby.com/artwork',
     title: 'Sovereign Radio',
