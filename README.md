@@ -175,19 +175,18 @@ cat docs/ARCHITECTURE.md
 ## Current Status
 
 ```
-[■■■■■■□□□□] 60% — Testnet Stage
+[■■■■□□□□□□] 40% — L2 Bring-Up Stage
 
 ✅ Concept locked
 ✅ Positioning locked
-✅ Docs written
-✅ OP Stack forked
-✅ L1 contracts deployed (Sepolia)
-✅ L2 node operational (op-geth, op-node, op-batcher, op-proposer)
-✅ Local devnet running (2-second blocks)
-✅ Blockscout explorer live (custom branded)
-✅ First bridge transaction (Sepolia → ACiD)
-⬜ Public testnet
-⬜ Bridge UI shipped
+✅ Docs written (PRD, whitepaper, branding guide, founder's story)
+✅ OP Stack rollup config defined (chain 1714, 2-second blocks)
+✅ L1 contracts deployed on Sepolia (verified on-chain)
+🟡 L2 sequencer bring-up — in progress
+⬜ Public testnet RPC
+⬜ Block explorer (Blockscout)
+⬜ Faucet
+⬜ Bridge UI live (UI exists at docs/bridge.html, not yet wired to RPC)
 ⬜ Mainnet
 ```
 
