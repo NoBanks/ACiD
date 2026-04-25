@@ -1,0 +1,295 @@
+/* network.html — content-page layout (overrides centered layout from style.css) */
+
+body.page-network {
+  display: block;
+  min-height: 100vh;
+  padding: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-link {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 40px;
+  width: auto;
+  mix-blend-mode: screen;
+  background: var(--black);
+}
+
+.page-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.page-nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2rem;
+  transition: all 0.15s ease;
+}
+
+.page-nav a:hover,
+.page-nav a.current {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+
+.page-main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #fff 0%, var(--acid) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 540px;
+  line-height: 1.5;
+}
+
+.cta-primary {
+  background: var(--acid);
+  color: var(--black);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.cta-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
+}
+
+.cta-primary:active {
+  transform: translateY(0);
+}
+
+.status-line {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  min-height: 1.2em;
+}
+
+.status-line.success { color: var(--acid); }
+.status-line.error { color: #ff6464; }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+}
+
+.info-card.wide {
+  grid-column: 1 / -1;
+}
+
+.info-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.info-value {
+  font-size: 1.1rem;
+  color: var(--white);
+}
+
+.info-value.mono,
+code.mono {
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  font-size: 0.95rem;
+  color: var(--acid);
+  word-break: break-all;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.3rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.copy-btn:hover {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+
+.copy-btn.copied {
+  background: var(--acid);
+  color: var(--black);
+  border-color: var(--acid);
+}
+
+.quickstart h2,
+.contracts h2,
+.coming-soon h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.quickstart h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--acid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.quickstart h3:first-of-type {
+  margin-top: 0;
+}
+
+.quickstart pre {
+  background: #060606;
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.quickstart code,
+.contracts code {
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.contract-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.contract-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contract-table td:first-child {
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  width: 1%;
+}
+
+.contract-table td:last-child code {
+  color: var(--acid);
+  font-size: 0.8rem;
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.coming-soon ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.coming-soon li {
+  padding: 0.85rem 1.25rem;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.page-footer {
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .page-header { padding: 0.75rem 1rem; flex-direction: column; gap: 0.75rem; }
+  .header-logo { height: 32px; }
+  .page-nav a { padding: 0.5rem 0.85rem; font-size: 0.7rem; }
+  .page-main { padding: 2rem 1rem 4rem; gap: 3rem; }
+  .hero h1 { font-size: 2rem; }
+  .lead { font-size: 0.95rem; }
+  .info-grid { grid-template-columns: 1fr; }
+  .copy-btn { position: static; margin-top: 0.5rem; align-self: flex-start; }
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACiD — Network</title>
+  <meta name="description" content="Connect to ACiD. Chain ID 1714. Public RPC live on Sepolia.">
+  <meta property="og:title" content="ACiD — Network">
+  <meta property="og:description" content="Connect to ACiD. Chain ID 1714.">
+  <meta property="og:image" content="assets/ACiD_logo_1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon-eyecon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="network.css">
+</head>
+<body class="page-network">
+  <header class="page-header">
+    <a href="index.html" class="home-link">
+      <img src="assets/ACiD_logo_1_4k_Cropped_NoBG.png" alt="ACiD" class="header-logo">
+    </a>
+    <nav class="page-nav">
+      <a href="index.html">Home</a>
+      <a href="network.html" class="current">Network</a>
+      <a href="bridge.html">Bridge</a>
+      <a href="founders-story.html">Story</a>
+      <a href="https://github.com/NoBanks/ACiD" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="hero">
+      <h1>Connect to ACiD</h1>
+      <p class="lead">Layer 2 on Ethereum. Settles to Sepolia. Built on the OP Stack — same lineage as Base.</p>
+      <button id="addToWallet" class="cta-primary">Add ACiD to MetaMask</button>
+      <p id="walletStatus" class="status-line"></p>
+    </section>
+
+    <section class="info-grid">
+      <div class="info-card">
+        <span class="info-label">Network name</span>
+        <span class="info-value">ACiD</span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Chain ID</span>
+        <span class="info-value">1714</span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Currency symbol</span>
+        <span class="info-value">ETH</span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Block time</span>
+        <span class="info-value">2 sec</span>
+      </div>
+      <div class="info-card wide">
+        <span class="info-label">RPC URL</span>
+        <code class="info-value mono">https://rpc-acid.livingagentic.me</code>
+        <button class="copy-btn" data-copy="https://rpc-acid.livingagentic.me">copy</button>
+      </div>
+      <div class="info-card wide">
+        <span class="info-label">WebSocket URL</span>
+        <code class="info-value mono">wss://ws-acid.livingagentic.me</code>
+        <button class="copy-btn" data-copy="wss://ws-acid.livingagentic.me">copy</button>
+      </div>
+      <div class="info-card wide">
+        <span class="info-label">L1 settlement</span>
+        <span class="info-value">Ethereum Sepolia (chain id 11155111)</span>
+      </div>
+    </section>
+
+    <section class="quickstart">
+      <h2>Deploy your first contract in 60 seconds</h2>
+
+      <div class="qs-tabs">
+        <h3>Foundry</h3>
+        <pre><code># 1. Bridge or faucet some ACiD ETH first (see Bridge page)
+# 2. Deploy a Counter contract
+forge create \
+  --rpc-url https://rpc-acid.livingagentic.me \
+  --private-key $PRIVATE_KEY \
+  --broadcast \
+  src/Counter.sol:Counter</code></pre>
+
+        <h3>Hardhat</h3>
+        <pre><code>// hardhat.config.js
+networks: {
+  acid: {
+    url: "https://rpc-acid.livingagentic.me",
+    chainId: 1714,
+    accounts: [process.env.PRIVATE_KEY],
+  }
+}
+
+// then:
+npx hardhat run scripts/deploy.js --network acid</code></pre>
+
+        <h3>ethers.js</h3>
+        <pre><code>import { JsonRpcProvider, Wallet } from "ethers";
+
+const provider = new JsonRpcProvider("https://rpc-acid.livingagentic.me");
+const wallet = new Wallet(process.env.PRIVATE_KEY, provider);
+
+const blockNumber = await provider.getBlockNumber();
+console.log("ACiD block:", blockNumber);</code></pre>
+      </div>
+    </section>
+
+    <section class="contracts">
+      <h2>L1 contracts (Sepolia)</h2>
+      <p class="muted">Deployed 2026-01-06 with op-contracts v5.0.0 via op-deployer v0.5.2.</p>
+      <table class="contract-table">
+        <tbody>
+          <tr><td>SystemConfig</td><td><code class="mono">0x57326a91C6a14af4BfCf1eEE72Bb7143a756B14b</code></td></tr>
+          <tr><td>OptimismPortal</td><td><code class="mono">0x6F567A4640d5826165f5F962F2aF38E0384E6944</code></td></tr>
+          <tr><td>L1StandardBridge</td><td><code class="mono">0x0695e4b6632844a871a8ffdc693cb3e2b5563743</code></td></tr>
+          <tr><td>L1CrossDomainMessenger</td><td><code class="mono">0xd03Af6399bdb060e7689E5e15a6368513d5817F2</code></td></tr>
+          <tr><td>L1ERC721Bridge</td><td><code class="mono">0x346312a1a2aa1922c0595041b4d7dff3547ff781</code></td></tr>
+          <tr><td>OptimismMintableERC20Factory</td><td><code class="mono">0x7734534786cd54311566dE669A1a7e39020E9a0F</code></td></tr>
+          <tr><td>DisputeGameFactory</td><td><code class="mono">0xC9b61359a4825f73b2729Bc95b31dC37B11d7458</code></td></tr>
+          <tr><td>AnchorStateRegistry</td><td><code class="mono">0xc59e2c333d846586cbb4c86dba8f267da2633ea5</code></td></tr>
+          <tr><td>BatchInbox</td><td><code class="mono">0x0056f135b647ee0107935f102ea36da530ed084f</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="coming-soon">
+      <h2>Coming soon</h2>
+      <ul>
+        <li>Block explorer at <code class="mono">explorer-acid.livingagentic.me</code></li>
+        <li>Faucet at <code class="mono">faucet-acid.livingagentic.me</code></li>
+        <li>Bridge UI at <code class="mono">bridge-acid.livingagentic.me</code></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p class="tagline-footer">Don't trip, we have no roadmap.</p>
+    <p class="copyright">© 2026 <img src="assets/ACiD_logo_2_4k_Cropped_NoBG.png" alt="ACiD" class="wordmark"></p>
+  </footer>
+
+  <script src="sovereign-radio.js" data-accent="#39FF14" data-position="top-right"></script>
+  <script src="network.js"></script>
+</body>
+</html>
