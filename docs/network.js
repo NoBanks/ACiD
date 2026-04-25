@@ -5,7 +5,7 @@ const ACID_PARAMS = {
   chainName: 'ACiD',
   nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   rpcUrls: ['https://rpc-acid.livingagentic.me'],
-  blockExplorerUrls: [], // populate when explorer is live
+  blockExplorerUrls: ['https://explorer-acid.livingagentic.me'],
 };
 
 const btn = document.getElementById('addToWallet');
