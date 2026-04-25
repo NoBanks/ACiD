@@ -9,7 +9,7 @@
 ```
 
 ![Chain ID](https://img.shields.io/badge/Chain_ID-1714-purple)
-![Status](https://img.shields.io/badge/Status-Testnet-yellow)
+![Status](https://img.shields.io/badge/Status-Public_Testnet_LIVE-brightgreen)
 ![OP Stack](https://img.shields.io/badge/Built_on-OP_Stack-red)
 [![Twitter](https://img.shields.io/twitter/follow/pHbalanceweb3?style=social)](https://twitter.com/pHbalanceweb3)
 
@@ -20,6 +20,20 @@ An Ethereum L2 that exists because Base exists. That's it. That's the pitch.
 ```
 web3 needs pH balance.
 ```
+
+## 🟢 Testnet is live
+
+| | |
+|---|---|
+| **Site** | [acid.livingagentic.me](https://acid.livingagentic.me) |
+| **Connect / add to wallet** | [acid.livingagentic.me/network.html](https://acid.livingagentic.me/network.html) |
+| **Public RPC** | `https://rpc-acid.livingagentic.me` |
+| **WebSocket** | `wss://ws-acid.livingagentic.me` |
+| **Faucet** | [faucet-acid.livingagentic.me](https://faucet-acid.livingagentic.me) |
+| **Block explorer** | [explorer-acid.livingagentic.me](https://explorer-acid.livingagentic.me) |
+| **Chain ID** | `1714` |
+
+Anyone in the world can: connect a wallet → claim free testnet ETH from the faucet → deploy a contract → see it on the explorer.
 
 ---
 
@@ -175,18 +189,19 @@ cat docs/ARCHITECTURE.md
 ## Current Status
 
 ```
-[■■■■□□□□□□] 40% — L2 Bring-Up Stage
+[■■■■■■■□□□] 75% — Public Testnet Live
 
 ✅ Concept locked
 ✅ Positioning locked
 ✅ Docs written (PRD, whitepaper, branding guide, founder's story)
 ✅ OP Stack rollup config defined (chain 1714, 2-second blocks)
 ✅ L1 contracts deployed on Sepolia (verified on-chain)
-🟡 L2 sequencer bring-up — in progress
-⬜ Public testnet RPC
-⬜ Block explorer (Blockscout)
-⬜ Faucet
-⬜ Bridge UI live (UI exists at docs/bridge.html, not yet wired to RPC)
+✅ L2 sequencer producing blocks — public RPC live
+✅ Public testnet RPC + WebSocket
+✅ Block explorer (Blockscout) live
+✅ Faucet live
+🟡 Bridge UI (live RPC wired in — landing page available, polishing UX)
+🟡 chainlist.org listing (PR #8262 — pending merge)
 ⬜ Mainnet
 ```
 
@@ -198,13 +213,15 @@ cat docs/ARCHITECTURE.md
 
 | Property | Value |
 |----------|-------|
-| **Chain ID** | 1714 |
+| **Chain ID** | `1714` |
 | **Block Time** | 2 seconds |
 | **Gas Token** | ETH |
 | **L1 Network** | Sepolia (11155111) |
-| **RPC URL** | `Coming soon (public testnet)` |
-| **Explorer** | `Coming soon (public testnet)` |
-| **Bridge** | `Coming soon` |
+| **Public RPC** | `https://rpc-acid.livingagentic.me` |
+| **WebSocket** | `wss://ws-acid.livingagentic.me` |
+| **Explorer** | [explorer-acid.livingagentic.me](https://explorer-acid.livingagentic.me) |
+| **Faucet** | [faucet-acid.livingagentic.me](https://faucet-acid.livingagentic.me) |
+| **Connect helper** | [acid.livingagentic.me/network.html](https://acid.livingagentic.me/network.html) |
 
 ### L1 Contract Addresses (Sepolia)
 
