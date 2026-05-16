@@ -13,7 +13,7 @@ x402 just added batch settlement: agents escrow once, pay per-call with off-chai
 
 For TRAIDE this removes the per-call settlement tax that would otherwise cap agent throughput on quote-heavy workloads. For ACiD this is the foundational primitive the "L2 for agent commerce" thesis needs to be real, not aspirational.
 
-The spec is brand new (May 12). My recommendation is to scope now, ship as v1.1 right after mainnet GA, not interrupt the in-flight CertiK audit. Reasoning in section 5.
+The spec is brand new (May 12). My recommendation is to scope now, ship as v1.1 right after mainnet GA, not bake new contract surface in before any third-party audit is even commissioned. Reasoning in section 5.
 
 ---
 
@@ -139,7 +139,7 @@ Building production code against a 1-day-old spec means refactor risk. A spec th
 
 ### Mid-audit interruption cost
 
-CertiK is in flight on TRAIDE's current 11-contract architecture. Adding new escrow contracts mid-audit means either:
+No third-party audit firm has been commissioned for TRAIDE's current 11-contract architecture yet. Adding new escrow contracts before that audit even starts means either:
 
 - The audit delays while new contracts get scoped
 - The audit finishes on the current scope and a separate audit pass covers the new contracts (additional cost, additional time)
@@ -164,7 +164,7 @@ This is not a reason to not ship. It is a reason to ship with care, with a real 
 
 ### For TRAIDE
 
-**Scope now. Build as v1.1 right after mainnet GA. Do not interrupt the in-flight CertiK audit.**
+**Scope now. Build as v1.1 right after mainnet GA. Do not expand the contract surface before a third-party audit firm has even been commissioned for the v1 architecture.**
 
 Concrete sequencing:
 
@@ -176,7 +176,7 @@ Concrete sequencing:
 
 Why this order:
 - The spec stabilizes before we commit production code to it
-- The CertiK audit completes on a clean scope
+- A future third-party audit completes on a clean scope
 - The first agent traffic informs the actual escrow lifecycle parameters (lock periods, refund rules, batch cadence)
 - The v1.1 ship is its own news cycle 4-8 weeks after launch, extending the protocol's voice in the market
 
@@ -197,7 +197,7 @@ Honest senior-engineer answer:
 | Reason to ship today | Reason to defer |
 |---|---|
 | First-mover news cycle | Spec is 1 day old, will iterate |
-| Differentiates TRAIDE vs other DEXes | CertiK audit is in-flight, mid-audit additions cost time + money |
+| Differentiates TRAIDE vs other DEXes | No third-party audit commissioned yet, expanding contract surface pre-audit is irresponsible |
 | ACiD pitch gets a reference implementation faster | Zero agent traffic today, optimization is premature |
 | The build itself is 5-7 focused days | New escrow contracts need their own audit pass |
 | Founder enthusiasm is a real input | Same vanity-infrastructure trap NBLM hit us on if we ship before customer demand |
