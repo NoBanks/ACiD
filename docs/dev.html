@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACiD — Build on this Chain</title>
+  <meta name="description" content="Developer quickstart for ACiD Testnet. RPC endpoints, contract deployment, explorer verification, demo dApp.">
+  <link rel="stylesheet" href="network.css">
+  <link rel="icon" href="assets/ACiD_logo_2_4k_Cropped_NoBG.png">
+  <style>
+    pre.code {
+      background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px;
+      padding: 1rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.5;
+    }
+    code.inline { background: rgba(57, 255, 20, 0.1); padding: 0.1rem 0.4rem; border-radius: 3px; font-family: 'JetBrains Mono', monospace; }
+    .info-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem 1.5rem; margin: 1rem 0; }
+    .info-grid dt { color: #888; }
+    .info-grid dd { font-family: 'JetBrains Mono', monospace; margin: 0; }
+    h2 { margin-top: 2.5rem; }
+    h3 { margin-top: 1.5rem; color: #39FF14; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="brand">ACiD</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="network.html">Network</a>
+      <a href="dev.html" class="current">Build</a>
+      <a href="app.html">Demo dApp</a>
+      <a href="https://faucet-acid.livingagentic.me" target="_blank">Faucet</a>
+      <a href="https://explorer-acid.livingagentic.me" target="_blank">Explorer</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Build on ACiD</h1>
+    <p class="muted">An Ethereum L2 testnet, OP Stack, Sepolia parent. Solidity contracts, EVM-equivalent. Connect a wallet, claim test ETH, deploy a contract, verify on the explorer. Standard EVM stack, no surprises.</p>
+
+    <h2>Network details</h2>
+    <dl class="info-grid">
+      <dt>Chain ID</dt><dd>1714 (0x6b2)</dd>
+      <dt>Network name</dt><dd>ACiD Testnet</dd>
+      <dt>Native currency</dt><dd>ETH (18 decimals)</dd>
+      <dt>RPC endpoint</dt><dd>https://rpc-acid.livingagentic.me</dd>
+      <dt>WebSocket endpoint</dt><dd>wss://ws-acid.livingagentic.me</dd>
+      <dt>Block explorer</dt><dd>https://explorer-acid.livingagentic.me</dd>
+      <dt>Faucet</dt><dd>https://faucet-acid.livingagentic.me</dd>
+      <dt>Live status</dt><dd><a href="https://stats.uptimerobot.com/tratQyff66" target="_blank">stats.uptimerobot.com/tratQyff66</a></dd>
+      <dt>Parent chain</dt><dd>Sepolia (eip155-11155111)</dd>
+      <dt>Stack</dt><dd>OP Stack (forked from Optimism)</dd>
+    </dl>
+
+    <h2>Quickstart — get a wallet on ACiD in 60 seconds</h2>
+    <ol>
+      <li>Open MetaMask (or any EIP-1193 wallet)</li>
+      <li>Click <strong>Add network</strong> and use the values above, OR open the <a href="app.html">demo dApp</a> and click <strong>"Add ACiD to wallet"</strong> for one-click setup</li>
+      <li>Go to <a href="https://faucet-acid.livingagentic.me" target="_blank">faucet-acid.livingagentic.me</a>, paste your address, claim 0.001 ACiD ETH (no login, 1 claim per address per 24h)</li>
+      <li>Open <a href="app.html">the demo dApp</a>, connect wallet, send a 0.0001 ETH burn transaction, watch it confirm on the explorer</li>
+    </ol>
+
+    <h2>Deploy a smart contract</h2>
+    <p>Standard EVM. Anything Solidity-compatible deploys to ACiD with no modifications.</p>
+
+    <h3>With Foundry (recommended)</h3>
+    <pre class="code">
+# Install Foundry once
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
+
+# Add ACiD to your foundry.toml
+[rpc_endpoints]
+acid = "https://rpc-acid.livingagentic.me"
+
+[etherscan]
+acid = { key = "ANY_NON_EMPTY", url = "https://explorer-acid.livingagentic.me/api/", chain = 1714 }
+
+# Deploy any contract
+forge create src/MyContract.sol:MyContract \
+  --rpc-url acid \
+  --private-key $PRIVATE_KEY \
+  --legacy
+
+# Verify on the explorer
+forge verify-contract &lt;ADDRESS&gt; src/MyContract.sol:MyContract \
+  --rpc-url acid \
+  --verifier blockscout \
+  --verifier-url https://explorer-acid.livingagentic.me/api/
+    </pre>
+
+    <h3>With Hardhat</h3>
+    <pre class="code">
+// hardhat.config.js
+module.exports = {
+  solidity: "0.8.24",
+  networks: {
+    acid: {
+      url: "https://rpc-acid.livingagentic.me",
+      chainId: 1714,
+      accounts: [process.env.PRIVATE_KEY],
+    }
+  },
+  etherscan: {
+    apiKey: { acid: "ANY_NON_EMPTY" },
+    customChains: [{
+      network: "acid",
+      chainId: 1714,
+      urls: {
+        apiURL: "https://explorer-acid.livingagentic.me/api/",
+        browserURL: "https://explorer-acid.livingagentic.me",
+      }
+    }]
+  }
+};
+    </pre>
+    <pre class="code">
+npx hardhat run scripts/deploy.js --network acid
+npx hardhat verify --network acid &lt;ADDRESS&gt; &lt;CONSTRUCTOR_ARGS&gt;
+    </pre>
+
+    <h3>With Remix (browser, no install)</h3>
+    <ol>
+      <li>Open <a href="https://remix.ethereum.org" target="_blank">remix.ethereum.org</a></li>
+      <li>Write or paste your contract</li>
+      <li>Compile</li>
+      <li>Deploy tab → Environment: <strong>Injected Provider — MetaMask</strong></li>
+      <li>Make sure MetaMask is on ACiD (Chain ID 1714)</li>
+      <li>Click Deploy. Confirm in wallet. Done.</li>
+    </ol>
+
+    <h2>Reference contracts already deployed on ACiD</h2>
+    <p>Source code at <a href="https://github.com/NoBanks/acid-contracts" target="_blank">github.com/NoBanks/acid-contracts</a>.</p>
+    <dl class="info-grid">
+      <dt>pH Balance (ERC20)</dt>
+      <dd><span id="phAddr">deploying — address will be listed here</span></dd>
+    </dl>
+    <p class="muted">Standard OpenZeppelin ERC20 with owner-mintable supply. Useful for dApp testing, token bridge demos, anything that needs a non-native ERC20 on ACiD.</p>
+
+    <h2>RPC methods supported</h2>
+    <p>All standard <code class="inline">eth_*</code>, <code class="inline">net_*</code>, <code class="inline">web3_*</code> JSON-RPC methods. OP Stack adds <code class="inline">optimism_*</code> namespace for L2-specific queries (output roots, withdrawal proofs, etc.). Hit the RPC with any standard Ethereum library — viem, ethers, web3.js, wagmi, all work as-is.</p>
+
+    <pre class="code">
+# Smoke test
+curl -X POST https://rpc-acid.livingagentic.me \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+
+# Returns {"jsonrpc":"2.0","id":1,"result":"0x...."}
+    </pre>
+
+    <h2>Rate limits + caveats</h2>
+    <ul>
+      <li><strong>10 requests per second per source IP</strong> sustained, enforced at the Cloudflare edge. Plenty for any dApp or single user. Spike traffic from one IP gets rate-limited, not banned</li>
+      <li><strong>POST only</strong> for JSON-RPC (standard). GET to the RPC root returns a 200 placeholder, not method handling</li>
+      <li><strong>No archive-mode trace methods</strong>: <code class="inline">debug_traceTransaction</code> and similar may not return for blocks older than a few days. Recent blocks work</li>
+      <li><strong>Testnet</strong>: chain state may reset if we hit major upgrade points. We try to avoid this but it can happen. Don't put anything irreplaceable on here</li>
+    </ul>
+
+    <h2>Reporting issues</h2>
+    <p>Open an issue on the chain source repo: <a href="https://github.com/NoBanks/ACiD" target="_blank">github.com/NoBanks/ACiD</a></p>
+    <p>For real-time status, check <a href="https://stats.uptimerobot.com/tratQyff66" target="_blank">the live status page</a>.</p>
+  </main>
+
+  <footer class="page-footer">
+    <p class="tagline-footer">Don't trip, we have no roadmap.</p>
+    <p class="copyright">© 2026 ACiD</p>
+  </footer>
+</body>
+</html>
