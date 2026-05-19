@@ -4,110 +4,148 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ACiD — Demo dApp</title>
-  <meta name="description" content="Connect a wallet, see your balance on ACiD, claim test ETH. Built with viem.">
+  <meta name="description" content="Connect a wallet, see your balance on ACiD, send a test transaction. Built with viem.">
+  <meta property="og:title" content="ACiD — Demo dApp">
+  <meta property="og:description" content="Connect a wallet, claim test ETH, send a transaction on ACiD.">
+  <meta property="og:image" content="assets/ACiD_logo_1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon-eyecon.png">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="network.css">
-  <link rel="icon" href="assets/ACiD_logo_2_4k_Cropped_NoBG.png">
   <style>
-    .app-card {
-      background: rgba(57, 255, 20, 0.04);
-      border: 1px solid rgba(57, 255, 20, 0.2);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 1rem 0;
+    /* App-specific bits only — everything else inherits from style.css + network.css */
+    .app-status {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
-    .app-row {
+    .app-status.connected { background: rgba(57, 255, 20, 0.15); color: #39FF14; }
+    .app-status.disconnected { background: rgba(180, 180, 180, 0.12); color: #aaa; }
+    .app-log {
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      color: #c8c8c8;
+      text-align: left;
+    }
+    .app-actions {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.25rem;
     }
-    .app-row:last-child { border-bottom: none; }
-    .app-label { color: #aaa; font-size: 0.9rem; }
-    .app-value { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.95rem; }
-    .btn {
-      background: #39FF14; color: #000; border: none; padding: 0.6rem 1.2rem;
-      border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 0.95rem;
-      margin: 0.25rem 0.5rem 0.25rem 0;
+    .tx-status {
+      margin-top: 1rem;
+      min-height: 1.5em;
+      color: #aaa;
+      font-size: 0.95rem;
     }
-    .btn:hover { opacity: 0.85; }
-    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-    .btn-secondary { background: transparent; color: #39FF14; border: 1px solid #39FF14; }
-    .status-pill { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; }
-    .status-connected { background: rgba(57, 255, 20, 0.15); color: #39FF14; }
-    .status-disconnected { background: rgba(255, 100, 100, 0.15); color: #ff6464; }
-    pre.log { background: #0a0a0a; padding: 1rem; border-radius: 4px; overflow-x: auto; max-height: 200px; }
+    .tx-status a { color: #39FF14; }
   </style>
 </head>
-<body>
-  <header class="site-header">
-    <a href="index.html" class="brand">ACiD</a>
-    <nav>
+<body class="page-network">
+  <header class="page-header">
+    <a href="index.html" class="home-link">
+      <img src="assets/ACiD_logo_1_4k_Cropped_NoBG.png" alt="ACiD" class="header-logo">
+    </a>
+    <nav class="page-nav">
       <a href="index.html">Home</a>
       <a href="network.html">Network</a>
+      <a href="dev.html">Build</a>
       <a href="app.html" class="current">Demo dApp</a>
-      <a href="https://faucet-acid.livingagentic.me" target="_blank">Faucet</a>
-      <a href="https://explorer-acid.livingagentic.me" target="_blank">Explorer</a>
+      <a href="bridge.html">Bridge</a>
+      <a href="founders-story.html">Story</a>
+      <a href="https://github.com/NoBanks/ACiD" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </header>
 
-  <main class="container">
-    <h1>ACiD Demo dApp</h1>
-    <p class="muted">A bare-bones wallet UI that proves the chain works end to end. Connect, see your balance, send a transaction, watch it appear in the explorer. ~30 seconds.</p>
+  <main class="page-main">
+    <section class="hero">
+      <h1>Demo dApp</h1>
+      <p class="lead">Connect a wallet. See your balance. Send a real transaction. Watch it confirm on the explorer. About 30 seconds end to end.</p>
+      <div class="app-actions">
+        <button id="connectBtn" class="cta-primary">Connect wallet</button>
+        <button id="addNetBtn" class="cta-primary" style="background:transparent;border:2px solid #39FF14;color:#39FF14;">Add ACiD to wallet</button>
+        <a href="https://faucet-acid.livingagentic.me" class="cta-primary" style="background:transparent;border:2px solid #39FF14;color:#39FF14;text-decoration:none;display:inline-flex;align-items:center;" target="_blank" rel="noopener">Get test ETH →</a>
+      </div>
+      <p id="walletStatus" class="status-line"></p>
+    </section>
 
-    <section class="app-card">
-      <div class="app-row">
-        <span class="app-label">Wallet</span>
-        <span class="app-value">
-          <span id="walletStatus" class="status-pill status-disconnected">Not connected</span>
+    <section class="info-grid">
+      <div class="info-card wide">
+        <span class="info-label">Wallet</span>
+        <span class="info-value">
+          <span id="walletPill" class="app-status disconnected">Not connected</span>
         </span>
       </div>
-      <div class="app-row">
-        <span class="app-label">Connected address</span>
-        <span class="app-value" id="addr">—</span>
+      <div class="info-card wide">
+        <span class="info-label">Connected address</span>
+        <code class="info-value mono" id="addr">—</code>
       </div>
-      <div class="app-row">
-        <span class="app-label">Chain</span>
-        <span class="app-value" id="chain">—</span>
+      <div class="info-card">
+        <span class="info-label">Chain</span>
+        <span class="info-value" id="chain">—</span>
       </div>
-      <div class="app-row">
-        <span class="app-label">Latest block</span>
-        <span class="app-value" id="block">—</span>
+      <div class="info-card">
+        <span class="info-label">Latest block</span>
+        <span class="info-value" id="block">—</span>
       </div>
-      <div class="app-row">
-        <span class="app-label">Your ACiD ETH balance</span>
-        <span class="app-value" id="eth">—</span>
+      <div class="info-card">
+        <span class="info-label">Your ACiD ETH</span>
+        <span class="info-value" id="eth">—</span>
       </div>
-      <div class="app-row">
-        <span class="app-label">Your pH balance</span>
-        <span class="app-value" id="ph">— (contract not configured)</span>
-      </div>
-      <div style="margin-top: 1rem;">
-        <button class="btn" id="connectBtn">Connect wallet</button>
-        <button class="btn btn-secondary" id="addNetBtn">Add ACiD to wallet</button>
-        <a class="btn btn-secondary" href="https://faucet-acid.livingagentic.me" target="_blank" style="text-decoration:none;">Get test ETH</a>
+      <div class="info-card">
+        <span class="info-label">Your pH balance</span>
+        <span class="info-value" id="ph">—</span>
       </div>
     </section>
 
-    <section class="app-card">
-      <h2 style="margin-top:0;">Send a test transaction</h2>
-      <p class="muted">Sends 0.0001 ACiD ETH to a burn address. Costs almost nothing in gas. Lands on-chain within seconds. Confirms your wallet talks to ACiD properly.</p>
-      <button class="btn" id="sendBtn" disabled>Send 0.0001 ETH to burn address</button>
-      <p id="txStatus" style="margin-top:1rem; min-height:1.5em;"></p>
+    <section class="coming-soon">
+      <h2>Send a test transaction</h2>
+      <p class="muted">Sends 0.0001 ACiD ETH to the standard burn address. Costs almost nothing in gas. Lands on-chain within seconds. Proves your wallet talks to ACiD properly.</p>
+      <p style="margin-top:1rem;">
+        <button id="sendBtn" class="cta-primary" disabled style="opacity:0.5;cursor:not-allowed;">Send 0.0001 ETH to burn address</button>
+      </p>
+      <p id="txStatus" class="tx-status"></p>
     </section>
 
-    <section class="app-card">
-      <h2 style="margin-top:0;">Activity log</h2>
-      <pre class="log" id="log">// connect a wallet to see activity</pre>
+    <section class="coming-soon">
+      <h2>Activity log</h2>
+      <p class="muted">Live trace of what just happened.</p>
+      <pre id="log" class="app-log">// connect a wallet to see activity</pre>
+    </section>
+
+    <section class="coming-soon">
+      <h2>Next steps</h2>
+      <p class="muted">After you've sent your first tx, try one of these.</p>
+      <ul>
+        <li>Open the <a href="https://explorer-acid.livingagentic.me">block explorer</a> and watch new blocks land in real time</li>
+        <li>Read the <a href="dev.html">developer guide</a> and deploy your first contract in 60 seconds</li>
+        <li>Check the <a href="https://stats.uptimerobot.com/tratQyff66" target="_blank" rel="noopener">live status page</a> to see uptime data across RPC, faucet, and explorer</li>
+      </ul>
     </section>
   </main>
 
   <footer class="page-footer">
     <p class="tagline-footer">Don't trip, we have no roadmap.</p>
+    <p class="copyright">© 2026 <img src="assets/ACiD_logo_2_4k_Cropped_NoBG.png" alt="ACiD" class="wordmark"></p>
   </footer>
 
+  <script src="sovereign-radio.js" data-accent="#39FF14" data-position="top-right"></script>
+
   <script type="module">
-    // viem ESM build via esm.sh CDN (no npm install needed)
     import { createPublicClient, createWalletClient, custom, http, formatEther, parseEther } from 'https://esm.sh/viem@2';
 
     const ACID_CHAIN = {
@@ -119,8 +157,8 @@
       testnet: true,
     };
 
-    // Set this AFTER you deploy pH and have its address
-    const PH_TOKEN_ADDRESS = ''; // e.g. '0xabc...' — leave blank until deployed
+    // Set after pH is deployed + verified
+    const PH_TOKEN_ADDRESS = '';
 
     const PH_ABI = [
       { name: 'balanceOf', type: 'function', stateMutability: 'view', inputs: [{ name: 'account', type: 'address' }], outputs: [{ type: 'uint256' }] },
@@ -133,7 +171,10 @@
     let walletClient = null;
     let account = null;
     const $ = (id) => document.getElementById(id);
-    const log = (msg) => { $('log').textContent = `[${new Date().toLocaleTimeString()}] ${msg}\n` + $('log').textContent; };
+    const log = (msg) => {
+      const ts = new Date().toLocaleTimeString();
+      $('log').textContent = `[${ts}] ${msg}\n` + $('log').textContent;
+    };
 
     async function refreshBlock() {
       try {
@@ -159,34 +200,50 @@
             publicClient.readContract({ address: PH_TOKEN_ADDRESS, abi: PH_ABI, functionName: 'symbol' }),
           ]);
           $('ph').textContent = `${Number(bal) / 10 ** dec} ${sym}`;
-        } catch (e) { $('ph').textContent = 'contract not found at PH_TOKEN_ADDRESS'; }
+        } catch (e) { $('ph').textContent = 'unable to read pH contract'; }
+      } else {
+        $('ph').textContent = 'pH not deployed yet';
       }
     }
 
     $('connectBtn').onclick = async () => {
-      if (!window.ethereum) { alert('Install MetaMask first: https://metamask.io'); return; }
-      walletClient = createWalletClient({ chain: ACID_CHAIN, transport: custom(window.ethereum) });
-      const [acc] = await walletClient.requestAddresses();
-      account = acc;
-      $('addr').textContent = acc;
-      $('walletStatus').textContent = 'Connected';
-      $('walletStatus').className = 'status-pill status-connected';
-      $('connectBtn').disabled = true;
-      $('sendBtn').disabled = false;
-      const chainId = await walletClient.getChainId();
-      $('chain').textContent = chainId === 1714 ? `ACiD (1714) ✓` : `Wrong chain (${chainId}) — switch to ACiD`;
-      log(`Connected ${acc}`);
-      refreshBalances();
-      setInterval(refreshBalances, 8000);
+      if (!window.ethereum) {
+        $('walletStatus').textContent = 'No wallet detected. Install MetaMask: https://metamask.io';
+        return;
+      }
+      try {
+        walletClient = createWalletClient({ chain: ACID_CHAIN, transport: custom(window.ethereum) });
+        const [acc] = await walletClient.requestAddresses();
+        account = acc;
+        $('addr').textContent = acc;
+        $('walletPill').textContent = 'Connected';
+        $('walletPill').className = 'app-status connected';
+        $('connectBtn').textContent = 'Wallet connected';
+        $('connectBtn').disabled = true;
+        $('connectBtn').style.opacity = '0.6';
+        $('sendBtn').disabled = false;
+        $('sendBtn').style.opacity = '1';
+        $('sendBtn').style.cursor = 'pointer';
+        const chainId = await walletClient.getChainId();
+        $('chain').textContent = chainId === 1714 ? `ACiD (1714) ✓` : `wrong chain (${chainId}) — switch to ACiD`;
+        log(`connected ${acc}`);
+        refreshBalances();
+        setInterval(refreshBalances, 8000);
+      } catch (e) {
+        log(`connect failed: ${e.message}`);
+      }
     };
 
     $('addNetBtn').onclick = async () => {
-      if (!window.ethereum) { alert('Install MetaMask first'); return; }
+      if (!window.ethereum) {
+        $('walletStatus').textContent = 'No wallet detected. Install MetaMask first.';
+        return;
+      }
       try {
         await window.ethereum.request({
           method: 'wallet_addEthereumChain',
           params: [{
-            chainId: '0x6b2',  // 1714 in hex
+            chainId: '0x6b2',
             chainName: 'ACiD Testnet',
             nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
             rpcUrls: ['https://rpc-acid.livingagentic.me'],
@@ -194,12 +251,12 @@
           }],
         });
         log('ACiD added to wallet');
-      } catch (e) { log(`Add network failed: ${e.message}`); }
+      } catch (e) { log(`add network failed: ${e.message}`); }
     };
 
     $('sendBtn').onclick = async () => {
       if (!walletClient || !account) return;
-      $('txStatus').textContent = 'Submitting...';
+      $('txStatus').textContent = 'submitting...';
       try {
         const hash = await walletClient.sendTransaction({
           account,
@@ -207,14 +264,14 @@
           value: parseEther('0.0001'),
         });
         log(`tx submitted: ${hash}`);
-        $('txStatus').innerHTML = `Submitted — <a href="https://explorer-acid.livingagentic.me/tx/${hash}" target="_blank">view on explorer ↗</a>`;
+        $('txStatus').innerHTML = `submitted — <a href="https://explorer-acid.livingagentic.me/tx/${hash}" target="_blank" rel="noopener">view on explorer ↗</a>`;
         const receipt = await publicClient.waitForTransactionReceipt({ hash });
-        log(`tx confirmed in block ${receipt.blockNumber}, gas ${receipt.gasUsed}`);
+        log(`tx confirmed in block ${receipt.blockNumber}, gas used ${receipt.gasUsed}`);
         $('txStatus').innerHTML += ` — confirmed in block ${receipt.blockNumber}`;
         refreshBalances();
       } catch (e) {
         log(`tx failed: ${e.message}`);
-        $('txStatus').textContent = `Failed: ${e.shortMessage || e.message}`;
+        $('txStatus').textContent = `failed: ${e.shortMessage || e.message}`;
       }
     };
   </script>
